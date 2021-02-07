@@ -226,7 +226,25 @@ snippet `lim_([\\?a-zA-Z]+)_([\\?a-zA-Z]+) ` A
 ``rv = '\\lim_{' + m[1] + ' \\to ' + m[2].replace('inf', '\\infty') + '} '``
 endsnippet
 
+snippet ½½ "textbf" iA 
+\textbf{ $1 } $0
+endsnippet
+
+snippet ,, "text" iA 
+\text{ $1 } $0
+endsnippet
+
+snippet __ "subscript" iA 
+_{$1}$0
+endsnippet
+
+snippet ^^ "superscript" iA 
+^{$1}$0
+endsnippet
+
 snippet mk "inline Math" wA
 \$$1\$``if (t[1] && ",-.?: )]".indexOf(t[1][0]) >= 0) { rv = '' } else { rv = ' ' }``$2
 endsnippet
+
+
 
