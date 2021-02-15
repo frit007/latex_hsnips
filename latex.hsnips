@@ -20,7 +20,7 @@ endsnippet
 //Math
 snippet dm "Math" wA
 \[
-$1
+    $1
 \] $0
 endsnippet
 
@@ -46,6 +46,8 @@ rv = msg;``
 \\end{bmatrix}
 endsnippet 
 
+
+
 snippet `vec([1-9])` "column vector" A
 ``rv = '\\begin{pmatrix}'``
 ``count=2;
@@ -64,7 +66,7 @@ snippet QQ "QQ" A
 endsnippet
 
 snippet RR "RR" A
-\mathbb{RR}
+\mathbb{R}
 endsnippet
 
 snippet CC "CC" A
@@ -87,8 +89,30 @@ snippet ØØ "underline" A
 \underline{$1} $0
 endsnippet
 
+snippet øø "underline" A
+\underbrace{$1}_{$2} $0
+endsnippet
+
+snippet åå "underline" A
+\overbrace{$1}_{$2} $0
+endsnippet
+
+snippet ææ "underline" A
+\tilde{$1} $0
+endsnippet
+
+snippet ÆÆ "underline" A
+\sqrt{$1} $0
+endsnippet
+
+snippet +- "underline" A
+\pm $0
+endsnippet
+
+
+
 //Letters
-snippet `(?<![\\a-zA-Z])([a-zA-Z])\1{1}(?![a-zA-Z])` "greek letters" A
+snippet `(?<![\\a-zA-ZÅÆØåæø])([a-zA-Z])\1{1}(?![a-zA-Z])` "greek letters" A
 ``transliteration = {"a": "\\alpha", "b": "\\beta", "g": "\\gamma", "G": "\\Gamma", "d": "\\delta", "D": "\\Delta", "e": "\\epsilon", "E": "\\varepsilon", "z": "\\zeta", "h": "\\eta", "t": "\\theta", "T": "\\Theta", "k": "\\kappa", "i": "\\iota", "l": "\\lambda", "L": "\\Lambda", "m": "\\mu", "n": "\\nu", "x": "\\xi", "X": "\\Xi", "p": "\\pi", "P": "\\Pi", "r": "\\rho", "s": "\\sigma", "S": "\\Sigma", "o": "\\omega", "O": "\\Omega", "c": "\\chi", "f": "\\phi", "F": "\\Phi", "y": "\\upsilon", "Y": "\\Upsilon", "v": "\\psi", "V": "\\Psi", "u": "\\tau" };
 rv = (transliteration[m[1]] || (m[1] + m[1]))``
 endsnippet
@@ -99,9 +123,9 @@ snippet `([a-zA-Z])([0-9]+) ` "underset" A
   rv = m[1] + a + m[2] + b``
 endsnippet
 
-snippet `(\\?\w+)(,\.|\.,)` "vector" A
-``rv = '\\vec{' + m[1] + '}'``
-endsnippet
+%snippet `(\\?\w+)(,\.|\.,)` "vector" A
+%``rv = '\\vec{' + m[1] + '}'``
+%endsnippet
 
 snippet "bar" "bar" riA
 \overline{$1}$0
@@ -115,9 +139,9 @@ snippet "hat" "hat" riA
 \hat{$1}$0
 endsnippet
 
-snippet `\b([a-zA-Z])hat\b` "hat" A
-``rv = '\\hat{' + m[1] + '}'``
-endsnippet
+%snippet `\b([a-zA-Z])hat\b` "hat" A
+%``rv = '\\hat{' + m[1] + '}'``
+%endsnippet
 
 snippet `\b([a-zA-Z])cal\b` "cal" A
 ``rv = '\\mathcal{' + m[1] + '}'``
@@ -172,6 +196,10 @@ snippet `>=` "geq" A
 ``rv = '\\geq'``
 endsnippet
 
+snippet `<>` "geq" A
+``rv = '\\Leftrightarrow'``
+endsnippet
+
 //---
 
 //Fractions 
@@ -205,18 +233,18 @@ snippet `^.*\)/` "Fraction with ()" A
     ``
 endsnippet
 
-%snippet * "multiplication" iA
-%\\cdot
-%endsnippet
-
-snippet `\b(d|D)(\\?\w+)[dD](\w{1}|\\\w+) ` "derivatives" A
-``
-if (m[1] == 'd') 
-  rv = '\\frac{\\partial ' + m[2] + '}{\\partial ' + m[3] + '}';
-else 
-  rv = '\\frac{\\mathrm{d' + m[2] + '}}{\\mathrm{d' + m[3] + '}}';
-``
+snippet * "multiplication" iA
+\cdot $0
 endsnippet
+
+%snippet `\b(d|D)(\\?\w+)[dD](\w{1}|\\\w+) ` "derivatives" A
+%``
+%if (m[1] == 'd') 
+%  rv = '\\frac{\\partial ' + m[2] + '}{\\partial ' + m[3] + '}';
+%else 
+%  rv = '\\frac{\\mathrm{d' + m[2] + '}}{\\mathrm{d' + m[3] + '}}';
+%``
+%endsnippet
 
 snippet `([\\?a-zA-Z]+)->([\\?a-zA-Z]+) ` A
 ``rv = '$1 \\xrightarrow[' + m[1] + ' \\to ' + m[2].replace('inf', '\\infty') + ']{} $2'`` 
@@ -240,6 +268,13 @@ endsnippet
 
 snippet ^^ "superscript" iA 
 ^{$1}$0
+endsnippet
+
+snippet x0 iA 
+x_{0}$0
+endsnippet
+snippet y0 iA 
+y_{0}$0
 endsnippet
 
 snippet mk "inline Math" wA
